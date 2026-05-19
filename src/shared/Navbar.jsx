@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@heroui/react";
 import Link from "next/link";
 
@@ -20,6 +21,8 @@ const Navbar = () => {
             path: "/my-bookings",
         },
     ];
+
+    
     return (
         <nav className=" py-3 px-5 mt-2 rounded-full
         flex items-center justify-between
