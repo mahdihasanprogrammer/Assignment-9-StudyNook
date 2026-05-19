@@ -4,6 +4,7 @@ import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 
 
@@ -28,6 +29,7 @@ const SignUpPage = () => {
 
     }, {
       onSuccess: () => {
+        toast.success('Registration successful! Please login.')
         router.push('/login')
 
       }
@@ -73,6 +75,7 @@ const SignUpPage = () => {
 
           </TextField>
           <TextField
+          isRequired
             name="image"
             type="url">
 
@@ -81,6 +84,7 @@ const SignUpPage = () => {
              placeholder="Enter your photo url" />
             <FieldError />
           </TextField>
+
           <TextField
             isRequired
             name="email"
@@ -109,6 +113,9 @@ const SignUpPage = () => {
               if (!/[A-Z]/.test(value)) {
                 return "Password must contain at least one uppercase letter";
               }
+              if (!/[a-z]/.test(value)) {
+                return "Password must contain at least one lowercase letter";
+              }
               if (!/[0-9]/.test(value)) {
                 return "Password must contain at least one number";
               }
@@ -136,7 +143,7 @@ const SignUpPage = () => {
             className=" bg-white/10 hover:bg-white/15 border border-white/15 text-slate-200
             w-full rounded-xl py-4 text-base" variant="tertiary">
             <FcGoogle className='size-5' />
-            Sign up with Google
+            Continue with Google
           </Button>
         </Form>
         <p className='text-center text-sm text-[#94A3B8]'>Already have an account?

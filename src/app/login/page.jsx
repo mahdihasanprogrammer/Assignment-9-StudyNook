@@ -3,6 +3,7 @@
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 
 
@@ -25,14 +26,16 @@ const SignUpPage = () => {
 
     }, {
       onSuccess: () => {
-       alert('Login successful')
+       toast.success('Login successful')
 
       }
     });
 // console.log(data, 'this is data')
 
     if (error) {
-      alert(error.message)
+      toast.error(error.message,{
+        duration: 2000,
+      })
     }
   }
 
@@ -118,7 +121,7 @@ const SignUpPage = () => {
         </Form>
         <p className='text-center text-sm text-[#94A3B8]'>Dont have an account?
           <Link className='font-medium text-[#22D3EE] hover:text-[#67E8F9]'
-            href="/login"> Sign up</Link></p>
+            href="/signup"> Sign up</Link></p>
       </Card>
     </div>
   );
