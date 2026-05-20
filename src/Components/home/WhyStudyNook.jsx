@@ -28,13 +28,13 @@ const WhyStudyNook = () => {
 
     return (
         <section className="bg-linear-to-b from-[#07111F] to-[#0F172A] 
-        py-15">
+       py-6 md:pt-15 pb-10 rounded-2xl my-15 px-2 md:px-6">
             {/* heading text */}
-            <div className="mb-10 space-y-1 text-center">
+            <div className="mb-10 space-y-2 text-center">
                 <h1 className="text-3xl md:text-4xl font-bold">
                     Why <span className="text-[#22D3EE]">StudyNook?</span>
                 </h1>
-                <p className="text-[#94A3B8]">
+                <p className="text-[#94A3B8] px-5">
                     Built around the way real students study -quiet, focused, and on your schedule.
                 </p>
             </div>
