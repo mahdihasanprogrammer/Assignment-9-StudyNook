@@ -29,7 +29,8 @@ const HowItWork = () => {
         },
     ];
     return (
-        <section className="my-15 text-center px-2 md:px-5 py-6  md:pt-10 md:pb-15 rounded-2xl
+        <section className="py-6 md:py-10 rounded-2xl my-15 px-2 md:px-6
+         text-center 
         bg-linear-to-b from-[#0F172A] to-[#07111F]">
             {/* heading text */}
             <div className="mb-10 space-y-2 text-center">
