@@ -53,8 +53,8 @@ const AddDestinationPage = () => {
 
     }
     return (
-        <Card className="mx-auto max-w-xl my-15 bg-white/10 
-     border border-white/10 backdrop-blur-xl">
+        <Card className="mx-auto max-w-xl my-15 bg-white/5 
+     border border-white/10 backdrop-blur-3xl">
             <form onSubmit={handleAddRoom}
                 className="p-2 space-y-8"
             >
