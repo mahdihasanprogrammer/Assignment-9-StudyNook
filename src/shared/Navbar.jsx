@@ -95,7 +95,9 @@ const Navbar = () => {
                 </div>
 
 
-                <h2 className="text-[#22D3EE] text-xl font-semibold">StudyNook</h2>
+                <h2 className=" text-xl font-bold
+                 ">Study
+                    <span className="text-[#22D3EE]">Nook</span></h2>
             </div>
 
             {/* navigation links */}

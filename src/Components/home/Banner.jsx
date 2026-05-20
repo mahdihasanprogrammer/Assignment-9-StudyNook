@@ -27,7 +27,7 @@ const Banner = () => {
                     <Link href={'/all-rooms'} className="relative">
                         <Button className=" rounded-lg
                         bg-[#22D3EE] hover:bg-[#06B6D4] text-[#07111F]">
-                            Sign up
+                            Explore Rooms
                         </Button>
                     </Link>
                 </div>
