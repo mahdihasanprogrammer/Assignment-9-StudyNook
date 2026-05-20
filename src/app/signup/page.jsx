@@ -81,7 +81,7 @@ const SignUpPage = () => {
 
             <Label className='text-[#E2E8F0]'>Photo Url</Label>
             <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]'
-             placeholder="Enter your photo url" />
+             placeholder="https://..." />
             <FieldError />
           </TextField>
 

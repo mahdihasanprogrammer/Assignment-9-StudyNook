@@ -7,7 +7,7 @@ import { LuLayers } from "react-icons/lu";
 const RoomCard = ({ room }) => {
     return (
         <div className="bg-[#ffffff14] border border-[#ffffff1f]
-        rounded-lg overflow-hidden hover:bg-white/5 hover:border-cyan-400/40 hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] hover:-translate-y-1 transition-all duration-300">
+        rounded-lg overflow-hidden hover:bg-white/5 hover:border-cyan-400/40 hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
 
             {/* image */}
             <div className="aspect-video relative w-full ">
@@ -17,7 +17,7 @@ const RoomCard = ({ room }) => {
                     className="hover:scale-108 transition duration-500" />
             </div>
 
-            <div className="p-4 space-y-4">
+            <div className="p-4 flex flex-col gap-4 h-full">
 
                 <div className="flex justify-between items-center">
                     <h3 className="text-xl font-semibold">{room.roomName}</h3>
@@ -42,7 +42,7 @@ const RoomCard = ({ room }) => {
                     </p>
                 </div>
 
-                <div className="flex items-center flex-wrap gap-2">
+                <div className="flex items-center flex-wrap gap-2 flex-1">
                     {room.amenities.map((amenity, index) =>
                         <Chip key={index} size="sm"
                             className="bg-[rgba(34,211,238,0.12)] text-[#67E8F9]

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebookF, FaGithub, FaLinkedinIn, FaLocationArrow } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaLinkedinIn} from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { GrLocation } from "react-icons/gr";
@@ -24,30 +24,28 @@ const Footer = () => {
                         </p>
 
                         <div className="mt-6 flex items-center gap-3">
-                            <a
+                            <a target="_blank"
                                 href="https://github.com/mahdihasanprogrammer"
                                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#22D3EE] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400/10 hover:shadow-[0_8px_30px_rgba(34,211,238,0.20)]"
                             >
                                 <FaGithub size={16} />
                             </a>
 
-                            <a
+                            <a target="_blank"
                                 href="https://www.facebook.com/hasan.shardar.1"
                                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#22D3EE] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400/10 hover:shadow-[0_8px_30px_rgba(34,211,238,0.20)]"
                             >
                                 <FaFacebookF size={16} />
                             </a>
 
-
-
-                            <a
+                            <a target="_blank"
                                 href="https://www.linkedin.com/in/mahdi-hasan-web"
                                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#22D3EE] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400/10 hover:shadow-[0_8px_30px_rgba(34,211,238,0.20)]"
                             >
                                 <FaLinkedinIn size={16} />
                             </a>
 
-                            <a
+                            <a target="_blank"
                                 href="#"
                                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#22D3EE] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400/10 hover:shadow-[0_8px_30px_rgba(34,211,238,0.20)]"
                             >
@@ -161,7 +159,7 @@ const Footer = () => {
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-cyan-400/10 text-[#22D3EE]">
-                                  <GrLocation size={16} />
+                                  <GrLocation size={18} />
                                 </div>
 
                                 <div>
