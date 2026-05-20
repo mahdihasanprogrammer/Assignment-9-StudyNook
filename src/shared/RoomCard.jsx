@@ -7,7 +7,9 @@ import { LuLayers } from "react-icons/lu";
 const RoomCard = ({ room }) => {
     return (
         <div className="bg-[#ffffff14] border border-[#ffffff1f]
-        rounded-lg overflow-hidden hover:bg-white/5 hover:border-cyan-400/40 hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+        rounded-lg overflow-hidden hover:bg-white/5
+         hover:border-cyan-400/40 
+         hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full backdrop-blur-3xl">
 
             {/* image */}
             <div className="aspect-video relative w-full ">

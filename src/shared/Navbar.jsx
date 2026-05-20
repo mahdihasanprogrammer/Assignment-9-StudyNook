@@ -39,11 +39,11 @@ const Navbar = () => {
         isPending, //loading state
     } = authClient.useSession();
     const user = session?.user;
-    console.log(session, 'session')
+  
 
 
     return (
-        <nav className=" py-2 px-2 md:px-5 mt-2 rounded-full
+        <nav className=" py-3 px-2 md:px-5 mt-2 rounded-full
         flex items-center justify-between
         bg-[#07111fb3] text-[#E2E8F0]
         border border-white/10">
@@ -122,10 +122,11 @@ const Navbar = () => {
             {isPending ?
                 <ProfileSkeleton /> :
                 user ?
-                    <div className="flex items-center gap-2 relative">
+                    <div className="flex items-center gap-3 relative">
                         <Avatar
                          onClick={()=>{setShowProfile(!showProfile)}}
-                        className="size-8">
+                        className="size-10 cursor-pointer border-2
+                         border-[#07111fb3]">
                             <Avatar.Image  referrerPolicy="no-referrer"
                                 alt={user?.name || 'user'} src={user?.image} />
                             <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
