@@ -14,7 +14,7 @@ const MyListingsPage = async () => {
     const user = session?.user;
 
 
-    console.log(session, 'hello session')
+    
     const res = await fetch(`http://localhost:9000/my-listings/${user?.id}`);
     const myListingData = await res.json();
 
