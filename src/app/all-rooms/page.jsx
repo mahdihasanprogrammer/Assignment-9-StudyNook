@@ -1,11 +1,15 @@
 import SideBar from "@/Components/AllRoomsPage/SideBar";
 import RoomCard from "@/shared/RoomCard";
+import NoRoomsFound from "@/ui/NoRoomsFound";
 
 const AllRoomsPage = async () => {
     const res = await fetch(`http://localhost:9000/all-rooms`);
     const allRoomsData = await res.json();
 
-
+ if(allRoomsData.length ===0 ){
+     return <NoRoomsFound type="allRooms"/>
+        
+    }
 
     return (
         <section className="my-15">

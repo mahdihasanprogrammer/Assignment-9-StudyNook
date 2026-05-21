@@ -1,6 +1,7 @@
 
 import { auth } from "@/lib/auth";
 import RoomCard from "@/shared/RoomCard";
+import NoRoomsFound from "@/ui/NoRoomsFound";
 import { headers } from "next/headers";
 
 
@@ -17,13 +18,16 @@ const MyListingsPage = async () => {
     
     const res = await fetch(`http://localhost:9000/my-listings/${user?.id}`);
     const myListingData = await res.json();
+    
 
-    console.log('listing data', myListingData)
-
-
+    if(myListingData.length ===0 ){
+     return <NoRoomsFound type="myListings"/>
+        
+    }
+ 
     return (
         <section className="my-15">
-
+          
             <div className="mb-10 space-y-1">
                 <h1 className="text-3xl md:text-4xl font-bold">My Listing Rooms</h1>
                 <p className="text-[#94A3B8]">

@@ -65,7 +65,7 @@ const AddDestinationPage = () => {
                         <TextField name="roomName" isRequired>
                             <Label className="text-[#E2E8F0]">Room Name</Label>
                             <Input placeholder="write room name"
-                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]" />
+                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
                             <FieldError />
                         </TextField>
                     </div>
@@ -76,7 +76,7 @@ const AddDestinationPage = () => {
                             <Label className="text-[#E2E8F0]">Description</Label>
                             <TextArea rows={3}
                                 placeholder="Describe the Study Room experience..."
-                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]"
+                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]"
                             />
                             <FieldError />
                         </TextField>
@@ -90,7 +90,7 @@ const AddDestinationPage = () => {
                             <Input
                                 type="url"
                                 placeholder="https://example.com/bali-paradise.jpg"
-                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]"
+                                className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]"
                             />
                             <FieldError />
                         </TextField>
@@ -100,7 +100,7 @@ const AddDestinationPage = () => {
                     <TextField name="floor" isRequired>
                         <Label className="text-[#E2E8F0]">Floor</Label>
 
-                        <Input placeholder="text/number, e.g., “3rd Floor" className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]" />
+                        <Input placeholder="text/number, e.g., “3rd Floor" className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
                         <FieldError />
                     </TextField>
 
@@ -108,7 +108,7 @@ const AddDestinationPage = () => {
                     <TextField name="seatCapacity" isRequired>
                         <Label className="text-[#E2E8F0]">Capacity</Label>
                         <Input placeholder="number, e.g., 4"
-                            className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]" />
+                            className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
                         <FieldError />
                     </TextField>
 

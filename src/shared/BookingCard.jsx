@@ -1,12 +1,15 @@
 
 
 import { auth } from '@/lib/auth';
+import { BookNowModalBtn } from '@/ui/BookNowModalBtn';
+import { DeleteRoomWithModal } from '@/ui/DeleteRoomWithModal';
 import { Avatar, Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import Link from 'next/link';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { LuLayers } from 'react-icons/lu';
 import { PiCalendarMinusBold } from 'react-icons/pi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const BookingCard = async ({ room }) => {
 
@@ -15,7 +18,7 @@ const BookingCard = async ({ room }) => {
         headers: await headers()
     })
     const user = session?.user;
-    console.log(session, 'test room')
+    console.log(session,room, 'test room')
 
 
     return (
@@ -46,12 +49,20 @@ const BookingCard = async ({ room }) => {
 
                 </div>
 
-                <Link href={`/all-rooms/${room._id}`}>
-                    <Button className='bg-[#22D3EE] hover:bg-[#06B6D4]
-                                text-[#07111F] w-full rounded-xl mt-4 transition-all duration-300 flex items-center gap-2'>
-                        <PiCalendarMinusBold />  Book Now
+               {
+                room.userId == user?.id && 
+                 <div className='flex items-center justify-between gap-5'>
+                  
+                    <DeleteRoomWithModal room={room}/>
+
+                    <Button className='bg-transparent border border-[#22D3EE] hover:bg-[#22D3EE] text-cyan-400
+                    hover:text-[#07111F] w-full rounded-lg mt-4 transition-all duration-300 flex items-center gap-2'>
+                        <PiCalendarMinusBold /> Edit
                     </Button>
-                </Link>
+                </div>
+               }
+
+                <BookNowModalBtn room={room} />
             </div>
 
             {/* listed info */}
@@ -69,7 +80,7 @@ const BookingCard = async ({ room }) => {
                     </Avatar>
                     <div className="border-b border-white/20 pb-2">
                         <h2>{room?.userName || 'Guest'}</h2>
-                        <p className="text-muted">{room?.userEmail|| 'user@gamil.com'}</p>
+                        <p className="text-muted">{room?.userEmail || 'user@gamil.com'}</p>
                     </div>
 
                 </div>
