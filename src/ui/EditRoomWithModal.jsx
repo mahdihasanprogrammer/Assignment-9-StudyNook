@@ -1,11 +1,11 @@
 "use client";
 
-
 import {Button,  FieldError, Input, Label, Modal, Surface, TextArea, TextField} from "@heroui/react";
 
 import { FaRegEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 
 export function EditRoomWithModal({room}) {
@@ -29,14 +29,18 @@ console.log(room)
         formData.amenities = form.getAll('amenities');
         console.log('formdata from edit', formData);
 
+        const { data } = await authClient.token();
+        
 
         const res = await fetch(`http://localhost:9000/all-rooms/${room._id}`,{
             method:'PATCH',
             headers:{
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                authorization: `Bearer ${data.token}`
             },
             body:JSON.stringify(formData)
         })
+
         const result = await res.json();
         if(result.modifiedCount >0){
             toast.success('Updated Room Successful');
@@ -55,14 +59,16 @@ console.log(room)
         <Modal.Container placement="auto">
           <Modal.Dialog className="mx-auto max-w-xl bg-white/5 
      border border-white/10 backdrop-blur-3xl h-screen min-h-[70vh] my-10">
-            
-          
-                <Modal.CloseTrigger className="bg-white/10" />
-          
+             <h1 className="text-2xl font-bold text-center text-cyan-500">Update Room Information</h1>
+
+          <Modal.Heading className="">
+             <Modal.CloseTrigger className="bg-white/10" />
+          </Modal.Heading>
+               
             
             <Modal.Body className="p-2">
              
-        <h1 className="text-2xl font-bold text-center text-cyan-500">Update Room Information</h1>
+       
             <form onSubmit={handleRoomEdit}
                 className="px-2 py-5 space-y-8"
             >

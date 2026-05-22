@@ -10,18 +10,22 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 export function DeleteRoomWithModal({ room }) {
 
     const router = useRouter();
-    // get user data from db;
-    const {
-        data: session,
-        isPending, //loading state
-    } = authClient.useSession();
-    const user = session?.user;
+  
 
+    
 
     const handleRoomDelete = async () => {
-        const res = await fetch(`http://localhost:9000/all-rooms/${room._id}?email=${user?.email}`, {
-            method: 'DELETE'
+
+        //delete request with jwt verification
+        const {data} = await authClient.token()
+
+        const res = await fetch(`http://localhost:9000/all-rooms/${room._id}`, {
+            method: 'DELETE',
+            headers:{
+                authorization:`Bearer ${data.token}`
+            }
         });
+
         const result = await res.json();
         if(result.deletedCount >0){
             toast.success(`${room.roomName} delete successful!`);

@@ -60,7 +60,7 @@ const BookingCard = async ({ room }) => {
                 </div>
                }
 
-                <BookNowModalBtn room={room} />
+                <BookNowModalBtn user={user} room={room} />
             </div>
 
             {/* listed info */}
