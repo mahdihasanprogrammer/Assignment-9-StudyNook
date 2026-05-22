@@ -9,8 +9,8 @@ const RoomCardDetailsPage = async ({ params }) => {
     const { id } = await params;
     const res = await fetch(`http://localhost:9000/all-rooms/${id}`);
     const room = await res.json();
-
-
+    const visibleAmenities = room.amenities.slice(0,3);
+    const remainingAmenities = (room.amenities.length) - 3;
     return (
         <section className=" my-15
         bg-[#ffffff14] border border-[#ffffff1f]
@@ -42,13 +42,22 @@ const RoomCardDetailsPage = async ({ params }) => {
 
                     {/* amenities */}
                     <div className="flex items-center flex-wrap gap-2">
-                        {room.amenities.map((amenity, index) =>
+                        {visibleAmenities.map((amenity, index) =>
                             <Chip key={index} size="sm"
                                 className="bg-[rgba(34,211,238,0.12)] text-[#67E8F9]
                                           border border-[rgba(34,211,238,0.25)]
                                           rounded-full text-xs py-0.5 px-2"
                             >{amenity}</Chip>
                         )}
+
+                        {
+                        remainingAmenities >0 && 
+                            <Chip size="sm"
+                                className="bg-[rgba(34,211,238,0.12)] text-[#67E8F9]
+                                          border border-[rgba(34,211,238,0.25)]
+                                          rounded-full text-xs py-0.5 px-2"
+                            > +{remainingAmenities}more</Chip>
+                        }
                     </div>
                 </div>
             </div>

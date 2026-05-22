@@ -1,69 +1,78 @@
-"use client"
-import { authClient } from "@/lib/auth-client";
-import CheckBoxField from "@/ui/CheckBoxField";
-import { Button, Card, FieldError, Input, Label, ListBox, TextArea, TextField, Select } from "@heroui/react";
+"use client";
+
+
+import {Button,  FieldError, Input, Label, Modal, Surface, TextArea, TextField} from "@heroui/react";
+
+import { FaRegEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 
-const AddDestinationPage = () => {
+export function EditRoomWithModal({room}) {
 
-    const router = useRouter();
+const router = useRouter();
+const allAmenities = [
+        "Whiteboard",
+        "Projector",
+        "Wi-Fi",
+        "Power Outlets",
+        "Quiet Zone",
+        "Air Conditioning",
+    ];
 
-    // get user data from db;
-    const {data: session, } = authClient.useSession();
-    const user = session?.user;
-    
+console.log(room)
+    const handleRoomEdit =async (event)=>{
 
-
-    const handleAddRoom = async (event) => {
         event.preventDefault();
-
-        const form = new FormData(event.currentTarget)
+        const form = new FormData(event.currentTarget);
         const formData = Object.fromEntries(form.entries());
         formData.amenities = form.getAll('amenities');
+        console.log('formdata from edit', formData);
 
-        // add current user information and form data in a object,
-        const addRoomData = {
-            
-            userId: user?.id,
-            userName: user?.name,
-            userEmail: user?.email,
-            userImage: user?.image,
-            ...formData
 
-        };
-
-        // call post api for added new room data in a database;
-        const res = await fetch(`http://localhost:9000/add-room`, {
-            method: "POST",
-            headers: {
+        const res = await fetch(`http://localhost:9000/all-rooms/${room._id}`,{
+            method:'PATCH',
+            headers:{
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(addRoomData)
-        });
-        const resultAddRoom = await res.json();
-
-        // check response of backend;
-        if (resultAddRoom.insertedId) {
-            toast.success('Room added successful');
-            router.push('/all-rooms')
+            body:JSON.stringify(formData)
+        })
+        const result = await res.json();
+        if(result.modifiedCount >0){
+            toast.success('Updated Room Successful');
+            router.refresh(`all-rooms/${room._id}`)
         }
-
-
     }
-    return (
-        <Card className="mx-auto max-w-xl my-15 bg-white/5 
-     border border-white/10 backdrop-blur-3xl">
-        <h1 className="text-3xl font-bold text-center text-cyan-500">+Add a Room</h1>
-            <form onSubmit={handleAddRoom}
-                className="p-2 space-y-8"
+
+
+  return (
+    <Modal>
+      <Button className='bg-transparent border border-[#22D3EE] hover:bg-[#22D3EE] text-cyan-400
+                       hover:text-[#07111F] w-full rounded-lg mt-4 transition-all duration-300 flex items-center gap-2'>
+                           <FaRegEdit /> Edit
+                       </Button>
+      <Modal.Backdrop>
+        <Modal.Container placement="auto">
+          <Modal.Dialog className="mx-auto max-w-xl bg-white/5 
+     border border-white/10 backdrop-blur-3xl h-screen min-h-[70vh] my-10">
+            
+          
+                <Modal.CloseTrigger className="bg-white/10" />
+          
+            
+            <Modal.Body className="p-2">
+             
+        <h1 className="text-2xl font-bold text-center text-cyan-500">Update Room Information</h1>
+            <form onSubmit={handleRoomEdit}
+                className="px-2 py-5 space-y-8"
             >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                     {/* Room Name */}
                     <div className="md:col-span-3">
-                        <TextField name="roomName" isRequired>
+                        <TextField name="roomName" isRequired
+                        defaultValue={room.roomName}>
+                            
                             <Label className="text-[#E2E8F0]">Room Name</Label>
                             <Input placeholder="write room name"
                                 className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
@@ -73,7 +82,8 @@ const AddDestinationPage = () => {
 
                     {/* Description */}
                     <div className="md:col-span-3">
-                        <TextField name="shortDescription" isRequired>
+                        <TextField name="shortDescription" isRequired
+                        defaultValue={room.shortDescription}>
                             <Label className="text-[#E2E8F0]">Description</Label>
                             <TextArea rows={3}
                                 placeholder="Describe the Study Room experience..."
@@ -85,7 +95,8 @@ const AddDestinationPage = () => {
 
                     {/* Image URL - Removed preview */}
                     <div className="md:col-span-3">
-                        <TextField name="roomImage" isRequired>
+                        <TextField name="roomImage" isRequired
+                        defaultValue={room.roomImage}>
                             <Label className="text-[#E2E8F0]">Image URL</Label>
 
                             <Input
@@ -98,7 +109,8 @@ const AddDestinationPage = () => {
                     </div>
 
                     {/* Floor */}
-                    <TextField name="floor" isRequired>
+                    <TextField defaultValue={room.floor}
+                     name="floor" isRequired>
                         <Label className="text-[#E2E8F0]">Floor</Label>
 
                         <Input placeholder="text/number, e.g., “3rd Floor" className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
@@ -106,7 +118,8 @@ const AddDestinationPage = () => {
                     </TextField>
 
                     {/* Capacity */}
-                    <TextField name="seatCapacity" isRequired>
+                    <TextField defaultValue={room.seatCapacity}
+                     name="seatCapacity" isRequired>
                         <Label className="text-[#E2E8F0]">Capacity</Label>
                         <Input placeholder="number, e.g., 4"
                             className="rounded-lg bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]" />
@@ -115,7 +128,8 @@ const AddDestinationPage = () => {
 
 
                     {/* Price */}
-                    <TextField name="hourlyRate" type="number" isRequired>
+                    <TextField defaultValue={room.hourlyRate}
+                     name="hourlyRate" type="number" isRequired>
                         <Label className="text-[#E2E8F0]">Price ($)</Label>
                         <Input
                             type="number"
@@ -126,24 +140,46 @@ const AddDestinationPage = () => {
                     </TextField>
 
                     <div className="w-full md:col-span-3">
-                        <CheckBoxField />
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+
+            {allAmenities.map(item =>
+                <div key={item}
+                className="border-white/10 bg-[#111827]/60 
+                px-4 py-3 rounded-lg text-sm flex items-center gap-2 cursor-pointer hover:border-cyan-400">
+
+                    <input type="checkbox"
+                     name="amenities"
+                      id={item}
+                     value={item}
+                     defaultChecked={room.amenities.includes(item)}
+                      className="size-4  rounded-full appearance-none bg-transparent outline-cyan-500 outline-1 checked:bg-cyan-400"
+                      />
+
+                    <label htmlFor={item}> {item}</label>
+                </div>
+            )}
+
+        </div>
                     </div>
 
                 </div>
 
                 {/* Buttons */}
 
-                <Button
+                <Button slot="close"
                     type="submit"
                     variant="outline"
 
                     className=" rounded-lg w-full bg-[#22D3EE] hover:bg-[#06B6D4] text-[#07111F] text-base"
                 >
-                    Add Room
+                    Update Room
                 </Button>
             </form>
-        </Card>
-    );
-};
-
-export default AddDestinationPage;
+       
+            </Modal.Body>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
+  );
+}

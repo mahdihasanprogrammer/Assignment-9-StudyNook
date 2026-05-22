@@ -6,6 +6,8 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { LuLayers } from "react-icons/lu";
 
 const RoomCard = ({ room }) => {
+    const visibleAmenities = room.amenities.slice(0, 3);
+    const remaining = room.amenities.length - 3;
     return (
         <div className="bg-[#ffffff14] border border-[#ffffff1f]
         rounded-lg overflow-hidden hover:bg-white/5
@@ -46,13 +48,21 @@ const RoomCard = ({ room }) => {
                 </div>
 
                 <div className="flex items-center flex-wrap gap-2 flex-1">
-                    {room.amenities.map((amenity, index) =>
+                    {visibleAmenities.map((amenity, index) =>
                         <Chip key={index} size="sm"
                             className="bg-[rgba(34,211,238,0.12)] text-[#67E8F9]
                         border border-[rgba(34,211,238,0.25)]
                         rounded-full text-xs py-0.5 px-2"
                         >{amenity}</Chip>
                     )}
+                    {
+                        remaining > 0 &&
+                        <Chip size="sm"
+                            className="bg-[rgba(34,211,238,0.12)] text-[#67E8F9]
+                        border border-[rgba(34,211,238,0.25)]
+                        rounded-full text-xs py-0.5 px-2"
+                        >+{remaining}more</Chip>
+                    }
                 </div>
 
                 <Link href={`/all-rooms/${room._id}`}>
@@ -61,7 +71,7 @@ const RoomCard = ({ room }) => {
                         View Details
                     </Button>
                 </Link>
-                
+
             </div>
 
         </div>

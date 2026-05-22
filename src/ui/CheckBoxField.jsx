@@ -21,7 +21,7 @@ const CheckBoxField = () => {
                     <input type="checkbox"
                      name="amenities"
                       id={item}
-                      value={item}
+                     value={item}
                       className="size-4  rounded-full appearance-none bg-transparent outline-cyan-500 outline-1 checked:bg-cyan-400"
                       />
 

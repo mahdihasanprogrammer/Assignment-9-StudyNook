@@ -3,6 +3,7 @@
 import { auth } from '@/lib/auth';
 import { BookNowModalBtn } from '@/ui/BookNowModalBtn';
 import { DeleteRoomWithModal } from '@/ui/DeleteRoomWithModal';
+import { EditRoomWithModal } from '@/ui/EditRoomWithModal';
 import { Avatar, Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import Link from 'next/link';
@@ -55,10 +56,7 @@ const BookingCard = async ({ room }) => {
                   
                     <DeleteRoomWithModal room={room}/>
 
-                    <Button className='bg-transparent border border-[#22D3EE] hover:bg-[#22D3EE] text-cyan-400
-                    hover:text-[#07111F] w-full rounded-lg mt-4 transition-all duration-300 flex items-center gap-2'>
-                        <PiCalendarMinusBold /> Edit
-                    </Button>
+                 <EditRoomWithModal room={room}/>
                 </div>
                }
 
