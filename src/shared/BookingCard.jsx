@@ -1,16 +1,13 @@
 
-
 import { auth } from '@/lib/auth';
 import { BookNowModalBtn } from '@/ui/BookNowModalBtn';
 import { DeleteRoomWithModal } from '@/ui/DeleteRoomWithModal';
 import { EditRoomWithModal } from '@/ui/EditRoomWithModal';
-import { Avatar, Button } from '@heroui/react';
+import { Avatar } from '@heroui/react';
 import { headers } from 'next/headers';
-import Link from 'next/link';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { LuLayers } from 'react-icons/lu';
-import { PiCalendarMinusBold } from 'react-icons/pi';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+
 
 const BookingCard = async ({ room }) => {
 
@@ -19,7 +16,7 @@ const BookingCard = async ({ room }) => {
         headers: await headers()
     })
     const user = session?.user;
-    console.log(session,room, 'test room')
+   
 
 
     return (

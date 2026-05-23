@@ -26,8 +26,7 @@ const RoomCardDetailsPage = async ({ params }) => {
                     <Image src={room.roomImage}
                         alt={room.roomName}
                         fill
-                        className="hover:scale-108 transition duration-500
-                        rounded-lg" />
+                        className="rounded-lg" />
                 </div>
 
                 {/* text content */}

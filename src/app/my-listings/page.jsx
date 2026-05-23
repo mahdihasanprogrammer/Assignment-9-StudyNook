@@ -11,12 +11,18 @@ const MyListingsPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
     })
-
     const user = session?.user;
 
+     const data = await auth.api.getToken({
+        headers: await headers()
+    })
+   
 
-    
-    const res = await fetch(`http://localhost:9000/my-listings/${user?.id}`);
+    const res = await fetch(`http://localhost:9000/my-listings/${user?.id}`,{
+        headers:{
+            authorization:`Bearer ${data.token}`
+        }
+    });
     const myListingData = await res.json();
     
 

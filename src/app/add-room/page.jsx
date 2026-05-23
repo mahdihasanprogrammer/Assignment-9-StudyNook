@@ -13,6 +13,7 @@ const AddDestinationPage = () => {
     // get user data from db;
     const {data: session, } = authClient.useSession();
     const user = session?.user;
+
     
 
 
@@ -34,11 +35,14 @@ const AddDestinationPage = () => {
 
         };
 
+         const {data} = await authClient.token()
+
         // call post api for added new room data in a database;
         const res = await fetch(`http://localhost:9000/add-room`, {
             method: "POST",
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                authorization:`Bearer ${data.token}`
             },
             body: JSON.stringify(addRoomData)
         });
