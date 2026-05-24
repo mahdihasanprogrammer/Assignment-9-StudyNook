@@ -4,8 +4,9 @@ import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-import toast from "react-hot-toast";
+
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from "react-hot-toast";
 
 export function DeleteRoomWithModal({ room }) {
 

@@ -3,8 +3,8 @@
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-hot-toast';
 
 
 const SignUpPage = () => {

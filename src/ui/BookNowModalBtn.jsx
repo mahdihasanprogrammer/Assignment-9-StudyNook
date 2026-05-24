@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-<Modal ></Modal>
+
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { Button, Calendar, DateField, FieldError, Input, Label, Modal, Surface, TextArea, TextField, Select, ListBox } from "@heroui/react";
 import { PiCalendarMinusBold } from "react-icons/pi";
@@ -10,10 +10,11 @@ import { PiCalendarMinusBold } from "react-icons/pi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export function BookNowModalBtn({ room, user }) {
-const [isOpen, setIsOpen] = useState(false);
+
   const timeSlots = [
     { id: "08:00", label: "08:00 AM" },
     { id: "09:00", label: "09:00 AM" },
@@ -29,11 +30,12 @@ const [isOpen, setIsOpen] = useState(false);
     { id: "19:00", label: "07:00 PM" },
     { id: "20:00", label: "08:00 PM" },
   ];
-
+const [isOpen, setIsOpen] = useState(false);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
 const [date, setDate] = useState(today(getLocalTimeZone()));
+const router = useRouter();
 
 
 
@@ -81,10 +83,11 @@ const [date, setDate] = useState(today(getLocalTimeZone()));
       roomImage: room.roomImage,
       userID: user.id,
       userName: user.name,
-      userEmail: user.email
+      userEmail: user.email,
+      status: 'Confirmed'
 
     }
-    console.log(bookingData, 'test bookings')
+   
 
       //delete request with jwt verification
     const { data } = await authClient.token()
@@ -100,9 +103,15 @@ const [date, setDate] = useState(today(getLocalTimeZone()));
 
     const result = await res.json();
     if(result.response=="ok"){
+
       toast.success(result.message)
-    } else{
+      router.refresh()
+        setIsOpen(false) 
+    }
+
+     else{
       toast.error(result.message)
+      setIsOpen(true)
     }
    
 
@@ -113,10 +122,12 @@ const [date, setDate] = useState(today(getLocalTimeZone()));
 
 
   return (
-    <Modal >
+    <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
       {
         user ?
-          <Button className=' bg-[#22D3EE] hover:bg-[#06B6D4]
+          <Button  onPress={() => setIsOpen(true)}
+ 
+           className=' bg-[#22D3EE] hover:bg-[#06B6D4]
                     text-[#07111F] w-full rounded-xl mt-4 transition-all duration-300 flex items-center gap-2'>
             <PiCalendarMinusBold />  Book Now
           </Button>
@@ -300,6 +311,7 @@ const [date, setDate] = useState(today(getLocalTimeZone()));
                     Cancel
                   </Button>
                   <Button
+              
                     type="submit"
                     className=" rounded-lg  bg-[#22D3EE] hover:bg-[#06B6D4] text-[#07111F] text-base">
                     Book Room

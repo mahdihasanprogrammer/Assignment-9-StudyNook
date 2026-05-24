@@ -4,8 +4,8 @@ import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-hot-toast';
 
 
 const SignUpPage = () => {
@@ -37,7 +37,7 @@ const SignUpPage = () => {
 // console.log(data, 'this is data')
 
     if (error) {
-      alert(error.message)
+      toast.error(error.message)
     }
   }
 
