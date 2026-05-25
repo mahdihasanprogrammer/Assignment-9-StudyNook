@@ -26,7 +26,7 @@ const NoRoomsFound = ({ type }) => {
   return (
     <div
       className="flex flex-col items-center justify-center
-      text-center py-15 my-10 px-6 rounded-3xl border border-white/10
+      text-center py-15  px-6 rounded-3xl border border-white/10
       bg-white/5 backdrop-blur-xl"
     >
       {/* Icon */}

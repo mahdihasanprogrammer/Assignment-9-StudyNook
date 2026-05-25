@@ -1,15 +1,18 @@
 import SideBar from "@/Components/AllRoomsPage/SideBar";
 import RoomCard from "@/shared/RoomCard";
 import NoRoomsFound from "@/ui/NoRoomsFound";
+import { div } from "framer-motion/client";
 
-const AllRoomsPage = async () => {
-    const res = await fetch(`http://localhost:9000/all-rooms`);
+const AllRoomsPage = async ({searchParams}) => {
+    const params = await searchParams
+   const amenity =  params.amenity || "";
+   const search =  params.search || "";
+   
+
+    const res = await fetch(`http://localhost:9000/all-rooms?search=${search}&amenity=${amenity}`);
     const allRoomsData = await res.json();
 
- if(allRoomsData.length ===0 ){
-     return <NoRoomsFound type="allRooms"/>
-        
-    }
+
 
     return (
         <section className="my-15">
@@ -22,7 +25,13 @@ const AllRoomsPage = async () => {
 
             <div className="grid grid-cols-4 gap-4">
                 {/* left side bar */}
-                <SideBar allRoomsData={allRoomsData}/>
+                <SideBar/>
+                {
+                    allRoomsData.length===0 &&
+                   <div className="md:col-span-3 ">
+                     <NoRoomsFound type="allRooms"/>
+                   </div>
+                }
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:col-span-3">
                     {
