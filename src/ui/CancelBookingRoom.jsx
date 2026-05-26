@@ -32,7 +32,7 @@ const CancelBookingRoom = ({ bookingId }) => {
                     color: "#F8FAFC",
                 }
             })
-            router.refresh()
+            router.refresh();
         }
     }
 

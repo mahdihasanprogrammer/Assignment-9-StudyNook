@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Study Nook",
+  title: "Study Nook - Home",
   description: " Library Study Room Booking",
 };
 

@@ -3,7 +3,14 @@ import RoomCard from "@/shared/RoomCard";
 import NoRoomsFound from "@/ui/NoRoomsFound";
 import { div } from "framer-motion/client";
 
+
+export const metadata = {
+  title: "Study Nook-all-rooms",
+  description: " Library Study Room Booking",
+};
+
 const AllRoomsPage = async ({searchParams}) => {
+    
     const params = await searchParams
    const amenity =  params.amenity || "";
    const search =  params.search || "";
@@ -23,7 +30,7 @@ const AllRoomsPage = async ({searchParams}) => {
                 </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-4 gap-4">
                 {/* left side bar */}
                 <SideBar/>
                 {

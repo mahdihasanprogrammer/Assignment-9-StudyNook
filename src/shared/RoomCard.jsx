@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { LuLayers } from "react-icons/lu";
 
+
 const RoomCard = ({ room }) => {
     const visibleAmenities = room.amenities.slice(0, 3);
     const remaining = room.amenities.length - 3;
@@ -15,7 +16,7 @@ const RoomCard = ({ room }) => {
          hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full backdrop-blur-3xl">
 
             {/* image */}
-            <div className="aspect-video relative w-full ">
+            <div className="aspect-video relative w-full mx-auto">
                 <Image src={room.roomImage}
                     alt={room.roomName}
                     fill

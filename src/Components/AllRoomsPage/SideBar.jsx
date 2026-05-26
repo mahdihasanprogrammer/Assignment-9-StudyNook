@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { MdOutlineLockReset } from "react-icons/md";
 
 
 
@@ -68,9 +69,9 @@ const SideBar = () => {
 
 
             <Button onClick={handleReset}
-             className='w-full bg-[#22D3EE] hover:bg-cyan-500 
-             border-none rounded-lg' 
-             variant="outline">Reset</Button>
+             className='w-full  backdrop-blur-3xl hover:bg-cyan-500 
+             border-none rounded-lg bg-white/5 text-white/80' 
+             variant="outline"> <MdOutlineLockReset />Reset</Button>
 
             <div className="flex flex-col gap-3">
 

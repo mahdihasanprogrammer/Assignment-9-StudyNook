@@ -4,6 +4,10 @@ import RoomCard from "@/shared/RoomCard";
 import NoRoomsFound from "@/ui/NoRoomsFound";
 import { headers } from "next/headers";
 
+export const metadata = {
+    title: "StudyNook - My listings",
+    description: " user created room list"
+}
 
 const MyListingsPage = async () => {
 

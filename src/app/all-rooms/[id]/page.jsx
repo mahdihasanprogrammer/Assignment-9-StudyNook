@@ -2,7 +2,15 @@ import BookingCard from "@/shared/BookingCard";
 import { Chip } from "@heroui/react";
 import Image from "next/image";
 
+export const generateMetadata =async({params})=>{
+    const {id} = await params;
+    const room = await fetch(`http://localhost:9000/all-rooms/${id}`).then(res => res.json());
 
+    return {
+        title: `StudyNook - All Rooms - ${room.roomName}`,
+        description: room.shortDescription,
+    }
+} 
 
 const RoomCardDetailsPage = async ({ params }) => {
 

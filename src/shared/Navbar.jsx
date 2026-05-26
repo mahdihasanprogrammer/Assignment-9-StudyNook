@@ -1,8 +1,8 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
+import NavLink from "@/ui/NavLink";
 import { ProfileSkeleton } from "@/ui/ProfileSkeleton";
 import { Avatar, Button } from "@heroui/react";
-import { h1, span } from "framer-motion/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -53,7 +53,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className=" py-3 px-2 md:px-5 mt-2 rounded-full
+        <nav className=" py-2 px-3 md:px-5 mt-2 rounded-full
         flex items-center justify-between
         bg-[#07111fb3] text-[#E2E8F0]
         border border-white/10">
@@ -62,22 +62,22 @@ const Navbar = () => {
             <div className="flex gap-2 items-center">
 
                 {/* MOBILE DESIGN */}
-                <div className="relative md:hidden">
+                <div className="relative z-50 md:hidden">
                     {
                         showMenu ?
-                            <p onClick={() => {setShowMenu(!showMenu) }}>
+                            <p onClick={() => { setShowMenu(!showMenu) }}>
                                 <IoClose className="size-9 
-                                    p-1 hover:bg-white/10 rounded-2xl z-100"
+                                    p-1 hover:bg-white/10 rounded-2xl z-[999px]"
                                 />
                             </p>
-                            // <h1 onClick={() => {setShowMenu(!showMenu)}}>my country</h1>
 
-                            : <span onClick={() => { setShowMenu(!showMenu) }}>
+
+                            : <p onClick={() => { setShowMenu(!showMenu) }}>
                                 <GiHamburgerMenu
                                     className="size-9 p-2  hover:bg-white/10 
                                 rounded-2xl z-100"
-                                   />
-                            </span>
+                                />
+                            </p>
 
                     }
 
@@ -87,20 +87,19 @@ const Navbar = () => {
                     w-50 p-4 bg-[#07111fb3] border border-white/10 
                     top-14 text-sm gap-3 rounded-2xl backdrop-blur-3xl">
 
-                            <li className="hover:text-[#06B6D4]">
-                                <Link href="/">Home</Link></li>
-                            <li className="hover:text-[#06B6D4]">
-                                <Link href="/all-rooms"> All Rooms </Link></li>
+
+                            <NavLink href="/">Home</NavLink>
+
+                            <NavLink href="/all-rooms"> All Rooms </NavLink>
 
                             {/* private route */}
                             {isPending ?
                                 <ProfileSkeleton /> :
                                 user ?
                                     privateLinks.map(link =>
-                                        <li className="hover:text-[#06B6D4]"
-                                            key={link.id}>
-                                            <Link href={link.path}>{link.name}</Link>
-                                        </li>)
+
+                                        <NavLink key={link.id} href={link.path}>{link.name}</NavLink>
+                                    )
                                     : ""
                             }
                         </ul>
@@ -115,10 +114,10 @@ const Navbar = () => {
 
             {/* navigation links */}
             <ul className="md:flex hidden items-center justify-between gap-5 text-sm">
-                <li className="hover:text-[#06B6D4]">
-                    <Link href="/">Home</Link></li>
-                <li className="hover:text-[#06B6D4]">
-                    <Link href="/all-rooms"> All Rooms </Link></li>
+
+                <NavLink href="/">Home</NavLink>
+
+                <NavLink href="/all-rooms"> All Rooms </NavLink>
 
 
                 {/* private route */}
@@ -126,10 +125,10 @@ const Navbar = () => {
                     <ProfileSkeleton /> :
                     user ?
                         privateLinks.map(link =>
-                            <li className="hover:text-[#06B6D4]"
-                                key={link.id}>
-                                <Link href={link.path}>{link.name}</Link>
-                            </li>)
+
+                            <NavLink key={link.id}
+                                href={link.path}>{link.name}</NavLink>
+                        )
                         : ""
                 }
             </ul>
@@ -161,14 +160,14 @@ const Navbar = () => {
 
                                 <ul className="text-sm py-3 border-b
                              border-white/20 space-y-3">
-                                    <li className="hover:text-cyan-500">
-                                        <Link href={'/my-listings'}>
-                                            My-Listings</Link>
-                                    </li>
-                                    <li className="hover:text-cyan-500">
-                                        <Link href={'/my-bookings'}>
-                                            My-Bookings</Link>
-                                    </li>
+
+                                    <NavLink href={'/my-listings'}>
+                                        My-Listings</NavLink>
+
+
+                                    <NavLink href={'/my-bookings'}>
+                                        My-Bookings</NavLink>
+
                                 </ul>
 
                                 <Button onClick={handleLogout}
@@ -181,16 +180,15 @@ const Navbar = () => {
 
                     </div> :
 
-                    <div className="flex items-center gap-3">
-                        <Link href={'/login'}>
-                            <Button size="sm" className="rounded-lg
-                    bg-[#22D3EE] hover:bg-[#06B6D4] text-[#07111F]">
-                                Login
-                            </Button>
+                    <div className="flex items-center gap-4">
+                        <Link className="hover:text-[#22D3EE] transition-all duration-300"
+                            href={'/login'}>
+                            Login
                         </Link>
                         <Link href={'/signup'}>
-                            <Button size="sm" className=" rounded-lg
-                    bg-[#22D3EE] hover:bg-[#06B6D4] text-[#07111F]">
+                            <Button size="sm"
+                                className="hover:shadow-[0_8px_30px_rgba(34,211,238,0.12)] bg-[#22D3EE]
+                             hover:bg-[#06B6D4] text-[#07111F]">
                                 Sign up
                             </Button>
                         </Link>
