@@ -15,7 +15,7 @@ const CancelBookingRoom = ({ bookingId }) => {
 
         //delete request with jwt verification;
         const { data } = await authClient.token();
-        const res = await fetch(`http://localhost:9000/my-bookings/${bookingId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-bookings/${bookingId}`, {
             method: 'PATCH',
             headers: {
                 authorization: `Bearer ${data.token}`

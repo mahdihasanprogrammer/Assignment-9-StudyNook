@@ -32,7 +32,7 @@ console.log(room)
         const { data } = await authClient.token();
         
 
-        const res = await fetch(`http://localhost:9000/all-rooms/${room._id}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-rooms/${room._id}`,{
             method:'PATCH',
             headers:{
                 'Content-type': 'application/json',

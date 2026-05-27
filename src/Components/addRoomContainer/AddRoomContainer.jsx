@@ -38,7 +38,7 @@ const AddRoomContainer = () => {
          const {data} = await authClient.token()
 
         // call post api for added new room data in a database;
-        const res = await fetch(`http://localhost:9000/add-room`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-room`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',

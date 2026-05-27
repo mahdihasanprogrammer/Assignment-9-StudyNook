@@ -22,7 +22,7 @@ const MyListingsPage = async () => {
     })
    
 
-    const res = await fetch(`http://localhost:9000/my-listings/${user?.id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-listings/${user?.id}`,{
         headers:{
             authorization:`Bearer ${data.token}`
         }

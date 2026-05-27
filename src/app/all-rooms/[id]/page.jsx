@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const generateMetadata =async({params})=>{
     const {id} = await params;
-    const room = await fetch(`http://localhost:9000/all-rooms/${id}`).then(res => res.json());
+    const room = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-rooms/${id}`).then(res => res.json());
 
     return {
         title: `StudyNook - All Rooms - ${room.roomName}`,
@@ -15,7 +15,7 @@ export const generateMetadata =async({params})=>{
 const RoomCardDetailsPage = async ({ params }) => {
 
     const { id } = await params;
-    const res = await fetch(`http://localhost:9000/all-rooms/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-rooms/${id}`);
     const room = await res.json();
     const visibleAmenities = room.amenities.slice(0,3);
     const remainingAmenities = (room.amenities.length) - 3;

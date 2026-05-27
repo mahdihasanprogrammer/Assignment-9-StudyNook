@@ -16,7 +16,7 @@ const AllRoomsPage = async ({searchParams}) => {
    const search =  params.search || "";
    
 
-    const res = await fetch(`http://localhost:9000/all-rooms?search=${search}&amenity=${amenity}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-rooms?search=${search}&amenity=${amenity}`);
     const allRoomsData = await res.json();
 
 

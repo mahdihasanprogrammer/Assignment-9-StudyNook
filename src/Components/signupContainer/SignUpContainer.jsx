@@ -32,18 +32,22 @@ const SignUpContainer = () => {
       image: image,
       password: password
 
-    }, {
+    },
+     {
       onSuccess: () => {
         toast.success('Registration successful! Please login.')
         router.push('/login')
 
       }
-    });
-   } catch(error){
+    })
+    
+     console.log('error', error, data)
+   }
+    catch(error){
       toast.error(error.message)
    }
 
-   console.log('error', error, data)
+  
   }
 
 

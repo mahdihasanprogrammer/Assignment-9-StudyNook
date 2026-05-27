@@ -1,7 +1,7 @@
 import RoomCard from "@/shared/RoomCard";
 
 const AvailableStudyRooms = async () => {
-    const res = await fetch(`http://localhost:9000/available-rooms`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/available-rooms`);
     const availableRooms =await res.json();
 
     return (
