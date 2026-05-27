@@ -1,6 +1,8 @@
 import { auth } from "@/lib/auth";
 import CancelBookingRoom from "@/ui/CancelBookingRoom";
+import NoRoomsFound from "@/ui/NoRoomsFound";
 import { Chip } from "@heroui/react";
+import { div, h1 } from "framer-motion/client";
 import { headers } from "next/headers";
 import Image from "next/image";
 
@@ -59,14 +61,17 @@ const MyBookingsPage = async () => {
 
   const bookingData = await res.json();
   
-  
+if(bookingData.length ===0){
+  return <div className="my-10">
+     <NoRoomsFound type="myBookings" />
+  </div>
+}
 
 
 
   return (
 
     <section className="my-10 px-4">
-
       {/* ========================= */}
       {/* DESKTOP TABLE */}
       {/* ========================= */}
@@ -76,7 +81,8 @@ const MyBookingsPage = async () => {
         <table className="w-full text-left">
 
           {/* TABLE HEAD */}
-          <thead>
+     
+           <thead>
 
             <tr className="bg-white/10 border-b border-white/10">
 
@@ -93,19 +99,16 @@ const MyBookingsPage = async () => {
 
             </tr>
 
-          </thead>
-
-
-
-
+          </thead> 
+      
 
           {/* TABLE BODY */}
           <tbody>
 
-            {bookingData.map((booking) => (
+            {bookingData?.map((booking) => (
 
               <tr
-                key={booking._id}
+                key={booking?._id}
                 className="border-b border-white/5 hover:bg-cyan-400/5 transition-all duration-300 "
               >
 
@@ -113,10 +116,10 @@ const MyBookingsPage = async () => {
                 <td className="px-6 py-4 align-middle ">
 
                   <Image
-                    src={booking.roomImage}
+                    src={booking?.roomImage}
                     width={80}
                     height={80}
-                    alt={booking.roomName}
+                    alt={booking?.roomName}
                     className="w-20 h-20 rounded-2xl object-cover border border-white/10"
                   />
 
@@ -126,21 +129,21 @@ const MyBookingsPage = async () => {
 
                 {/* ROOM NAME */}
                 <td className="px-6 py-4 align-middle  text-[#F8FAFC] font-medium">
-                  {booking.roomName}
+                  {booking?.roomName}
                 </td>
 
 
 
                 {/* DATE */}
                 <td className="px-6 py-4 align-middle  text-[#CBD5E1]">
-                  {booking.date}
+                  {booking?.date}
                 </td>
 
 
 
                 {/* TIME */}
                 <td className="px-6 py-4 align-middle  text-[#CBD5E1]">
-                  {booking.startTime} - {booking.endTime}
+                  {booking?.startTime} - {booking?.endTime}
                 </td>
 
 
@@ -150,7 +153,7 @@ const MyBookingsPage = async () => {
 
                   <Chip
                     className={
-                      booking.status === "Confirmed"
+                      booking?.status === "Confirmed"
                         ? "bg-green-500/10 text-green-400 border border-green-500/20"
                         : "bg-red-500/10 text-red-400 border border-red-500/20"
                     }
@@ -169,10 +172,10 @@ const MyBookingsPage = async () => {
 
                     {
                       booking.status === "Confirmed" &&
-                        new Date(`${booking.date} ${booking.startTime}`) > new Date()
+                        new Date(`${booking?.date} ${booking?.startTime}`) > new Date()
 
                         ? (
-                          <CancelBookingRoom bookingId={booking._id} />
+                          <CancelBookingRoom bookingId={booking?._id} />
                         )
 
                         : (
@@ -207,19 +210,19 @@ const MyBookingsPage = async () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:hidden max-w-6xl mx-auto">
 
-        {bookingData.map((booking) => (
+        {bookingData?.map((booking) => (
 
           <div
-            key={booking._id}
+            key={booking?._id}
             className="rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-4 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
           >
 
             {/* IMAGE */}
             <Image
-              src={booking.roomImage}
+              src={booking?.roomImage}
               width={500}
               height={300}
-              alt={booking.roomName}
+              alt={booking?.roomName}
               className="w-full h-40 rounded-2xl object-cover border border-white/10"
             />
 
@@ -230,7 +233,7 @@ const MyBookingsPage = async () => {
 
               {/* ROOM NAME */}
               <h2 className="text-lg font-semibold text-[#F8FAFC]">
-                {booking.roomName}
+                {booking?.roomName}
               </h2>
 
 
@@ -243,7 +246,7 @@ const MyBookingsPage = async () => {
                 </p>
 
                 <p className="text-[#E2E8F0] text-sm">
-                  {booking.date}
+                  {booking?.date}
                 </p>
 
               </div>
@@ -258,7 +261,7 @@ const MyBookingsPage = async () => {
                 </p>
 
                 <p className="text-[#E2E8F0] text-sm">
-                  {booking.startTime} - {booking.endTime}
+                  {booking?.startTime} - {booking?.endTime}
                 </p>
 
               </div>
@@ -271,12 +274,12 @@ const MyBookingsPage = async () => {
                 {/* STATUS */}
                 <Chip
                   className={
-                    booking.status === "Confirmed"
+                    booking?.status === "Confirmed"
                       ? "bg-green-500/10 text-green-400 border border-green-500/20"
                       : "bg-red-500/10 text-red-400 border border-red-500/20"
                   }
                 >
-                  {booking.status}
+                  {booking?.status}
                 </Chip>
 
 
@@ -285,11 +288,11 @@ const MyBookingsPage = async () => {
                 <div className="flex items-center justify-center">
 
                   {
-                    booking.status === "Confirmed" &&
-                      new Date(`${booking.date} ${booking.startTime}`) > new Date()
+                    booking?.status === "Confirmed" &&
+                      new Date(`${booking.date} ${booking?.startTime}`) > new Date()
 
                       ? (
-                        <CancelBookingRoom bookingId={booking._id} />
+                        <CancelBookingRoom bookingId={booking?._id} />
                       )
 
                       : (

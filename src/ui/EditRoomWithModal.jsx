@@ -43,7 +43,7 @@ console.log(room)
 
         const result = await res.json();
         if(result.modifiedCount >0){
-            toast.success('Updated Room Successful');
+            toast.success('Room updated successfully');
             router.refresh(`all-rooms/${room._id}`)
         }
     }

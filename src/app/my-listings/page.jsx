@@ -31,7 +31,9 @@ const MyListingsPage = async () => {
     
 
     if(myListingData.length ===0 ){
-     return <NoRoomsFound type="myListings"/>
+         return <div className="my-10">
+              <NoRoomsFound type="myListings"/>
+        </div>
         
     }
  

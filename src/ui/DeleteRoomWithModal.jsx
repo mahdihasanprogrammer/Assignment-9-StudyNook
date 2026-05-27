@@ -29,7 +29,7 @@ export function DeleteRoomWithModal({ room }) {
 
         const result = await res.json();
         if(result.deletedCount >0){
-            toast.success(`${room.roomName} delete successful!`);
+            toast.success(`${room.roomName} room deleted successfully!`);
             router.push('/all-rooms')
         }
 

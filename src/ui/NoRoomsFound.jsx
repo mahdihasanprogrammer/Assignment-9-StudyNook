@@ -5,9 +5,9 @@ const NoRoomsFound = ({ type }) => {
 
   const data = {
     allRooms: {
-      title: "No Rooms Available",
+      title: "No Rooms Found",
       subtitle:
-        "Currently there are no study rooms available. Please check again later.",
+        "Currently there are no study rooms found. Please check again later.",
       buttonText: "Go Home",
       buttonLink: "/",
     },
@@ -19,6 +19,13 @@ const NoRoomsFound = ({ type }) => {
       buttonText: "Add Room",
       buttonLink: "/add-room",
     },
+    myBookings: {
+    title: "You Have No Bookings Yet",
+    subtitle:
+      "Looks like you haven’t booked any study rooms yet. Explore available rooms and reserve your spot.",
+    buttonText: "Browse Rooms",
+    buttonLink: "/all-rooms",
+  },
   };
 
   const content = data[type];
