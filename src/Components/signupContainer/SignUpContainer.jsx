@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-hot-toast';
-import { error } from 'better-auth/api';
+
 
 
 
@@ -32,19 +32,19 @@ const SignUpContainer = () => {
       image: image,
       password: password
 
-    },
-     {
-      onSuccess: () => {
-        toast.success('Registration successful! Please login.')
-        router.push('/login')
-
-      }
     })
     
+    if(error){
+      toast.error(error.message)
+    }
+    if(data){
+      toast.success('Registration successful! Please login.')
+      router.push('/login')
+    }
      console.log('error', error, data)
    }
-    catch(error){
-      toast.error(error.message)
+    catch(err){
+      toast.error(err?.message || "Something went wrong");
    }
 
   
@@ -78,7 +78,7 @@ const SignUpContainer = () => {
 
           >
             <Label className='text-[#E2E8F0]'>Name</Label>
-            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]'
+            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]'
              placeholder="write your name" />
             <FieldError />
 
@@ -89,7 +89,7 @@ const SignUpContainer = () => {
             type="url">
 
             <Label className='text-[#E2E8F0]'>Photo Url</Label>
-            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]'
+            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]'
              placeholder="https://..." />
             <FieldError />
           </TextField>
@@ -106,7 +106,7 @@ const SignUpContainer = () => {
             }}
           >
             <Label className='text-[#E2E8F0]'>Email</Label>
-            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]'
+            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]'
              placeholder="write your email" />
             <FieldError />
           </TextField>
@@ -132,9 +132,9 @@ const SignUpContainer = () => {
             }}
           >
             <Label className='text-[#E2E8F0]'>Password</Label>
-            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text[#64748B]'
+            <Input className='bg-[#ffffff0f] border-[#ffffff1f] focus:border-[#22D3EE] text-[#F8FAFC] placeholder:text-[#64748B]'
              placeholder="Enter your password" />
-            <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+            <Description>Must be at least 8 characters with 1 uppercase and 1 lowercase and 1 number</Description>
             <FieldError />
           </TextField>
 

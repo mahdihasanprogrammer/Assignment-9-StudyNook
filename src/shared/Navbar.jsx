@@ -53,7 +53,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className=" py-2 px-3 md:px-5 mt-2 rounded-full
+        <nav className=" py-2  md:px-5 mt-2 rounded-full
         flex items-center justify-between
         bg-[#07111fb3] text-[#E2E8F0]
         border border-white/10">
@@ -62,7 +62,7 @@ const Navbar = () => {
             <div className="flex gap-2 items-center">
 
                 {/* MOBILE DESIGN */}
-                <div className="relative z-50 md:hidden">
+                <div className="relative z-50 md:hidden pl-2">
                     {
                         showMenu ?
                             <p onClick={() => { setShowMenu(!showMenu) }}>
@@ -136,16 +136,16 @@ const Navbar = () => {
             {isPending ?
                 <ProfileSkeleton /> :
                 user ?
-                    <div className="flex items-center gap-3 relative">
+                    <div className="flex items-center gap-1.5 md:gap-3 relative">
                         <Avatar
                             onClick={() => { setShowProfile(!showProfile) }}
-                            className="size-10 cursor-pointer border-2
+                            className="size-9 md:size-10 cursor-pointer border-2
                          border-[#07111fb3]">
                             <Avatar.Image referrerPolicy="no-referrer"
                                 alt={user?.name || 'user'} src={user?.image} />
                             <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
                         </Avatar>
-                        <p className="text-sm">{user?.name.split(' ').slice(0, 1) || 'Guest'}</p>
+                        <p className="text-sm pr-3">{user?.name.split(' ').slice(0, 1) || 'Guest'}</p>
 
                         {/* profile dropdown */}
                         {

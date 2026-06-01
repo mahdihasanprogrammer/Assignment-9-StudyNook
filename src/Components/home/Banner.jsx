@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Banner = () => {
     return (
-        <section className=" min-h-[80vh] flex flex-col justify-center items-center
+        <section className="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center items-center
         bg-linear-to-br from-[#07111F] via-[#0F172A] to-[#111827]
         mt-5 mb-15 px-5 md:px-10 rounded-2xl">
 
